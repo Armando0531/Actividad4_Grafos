@@ -197,6 +197,60 @@ class ColaLista {
     	}
 }
 
+class Arco{
+	int destino;
+    double peso;
+    
+    public Arco(int d){
+    	destino = d;
+    }
+    public Arco(int d, double p){
+    	this(d);
+    	peso = p;
+    	}
+    
+    public int getDestino(){
+        return destino;
+    }
+    public boolean equals(Object n){
+    	Arco a = (Arco)n;
+    	return destino == a.destino;
+    }
+} 
+
+class GrafoAdcia{
+	int numVerts;
+    static int maxVerts = 20;
+    Vertice [] tablAdc;
+    
+    public GrafoAdcia(int mx){
+    	tablAdc = new Vertice[mx];
+        numVerts = 0;
+        maxVerts = mx;
+    }
+    public int numVertice(String vs) {
+        Vertice v = new Vertice(vs);
+        boolean encontrado = false;
+        int i = 0;
+        for (; (i < numVerts) && !encontrado;){
+       	 encontrado = tablAdc[i].equals(v);
+       	 if (!encontrado) 
+       		 i++ ;
+       	 }
+        return (i < numVerts) ? i : -1 ;
+   }
+} 
+
+class NodoPila{
+	Object elemento;
+    NodoPila siguiente;
+    
+    NodoPila(Object x){
+    	elemento = x;
+        siguiente = null;
+    }
+} 
+
 public class PruebaGrafos {
 	public static void main(String[] args) {
 		
