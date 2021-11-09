@@ -1,3 +1,10 @@
+/*
+ * Codigo principal sacado del libro
+ * Estructura de datos en java Joyanes 
+ * 
+ * */
+
+import java.util.Scanner;
 
 class Vertice {
 	private String nombre;
@@ -253,8 +260,69 @@ class NodoPila{
 
 public class PruebaGrafos {
 	public static void main(String[] args) {
+		Scanner entrada = new Scanner (System.in);
 		
+		System.out.println("Ingresa un maximo de vertices");
+		int mx=entrada.nextInt();
+		GrafoMatriz grafo = new GrafoMatriz(mx);
 		
+	    byte op=0;
+	    
+	    do {
+		System.out.println("Elige una opcion");
+		System.out.println("1) Añadir un vertice");
+		System.out.println("2) Añadir un arco");
+		System.out.println("3) Saber si son adyacentes");
+		System.out.println("4) Recorrer en anchura");
+		System.out.println("5) Salir");
+	    op=entrada.nextByte();
+	    entrada.nextLine();
+	    switch(op) {
+	    case 1: 
+	    	System.out.println("Ingresa el nombre del vertice");
+			String nom=entrada.nextLine();
+			grafo.nuevoVertice(nom);
+			System.out.println("Se añadio un vertice nuevo");
+			break;
+	    case 2:
+	    	System.out.println("Ingresa el nombre del vertice origen");
+			String a=entrada.nextLine();
+			System.out.println("Ingresa el nombre del vertice destino");
+			String b=entrada.nextLine();
+			try {
+				grafo.nuevoArco(a, b);
+				System.out.println("Se añadio arco");
+			} catch (Exception e) {
+				System.out.println("Error no se añadio arco! (Debe ingresar dos vertices existentes)");
+			}
+			break;
+	    case 3: 
+	    	System.out.println("Ingresa el nombre del primer vertice");
+			a=entrada.nextLine();
+			System.out.println("Ingresa el nombre del segundo vertice");
+			b=entrada.nextLine();
+			try {
+				System.out.println(grafo.adyacente(a, b)?"Son adyacentes":"No son adyacentes!");
+			} catch (Exception e) {
+				System.out.println("Ingresa vertices existentes!!");
+			}
+			break;
+	    case 4: 
+	    	System.out.println("Ingresa el nombre del vertice origen a recorrer");
+			String origen=entrada.nextLine();
+			try {
+				grafo.recorrerAnchura(grafo, origen);
+				System.out.println();
+			} catch (Exception e) {
+				System.out.println("Ingresa vertices que existan porfavor");
+			}
+			break;
+	    case 5: 
+	    	break;
+	    default:
+	    	System.out.println("Opcion incorrecta");
+	    }
+	    }while(op!=5);
 	}
 
 }
